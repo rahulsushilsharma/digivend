@@ -1,0 +1,17 @@
+{
+  "name": "col-proj",
+  "version": "1.0.0",
+  "description": "colage project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "online-shoping",
+    "firebase",
+    "cloud",
+    "vanila-javascript"
+  ],
+  "author": "Rahul Sharma",
+  "license": "MIT"
+}
