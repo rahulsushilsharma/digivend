@@ -20,10 +20,10 @@
         <li><a class="active" href="#">Home</a></li>
         <li><a href="./about.html?para1=something">About</a></li>
         <li><a href="./contact.html">Contact</a></li>
-        <li class="user login"><a href="./contact.html">logout</a></li>
+        <li class="user login" onclick="googleSignout()"><a href="#">logout</a></li>
         <li class="user login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><a
                 href="#">Login</a></li>
-        <li class="user login"><a href="./contact.html">UID</a></li>
+        <li class="user login"><img class="user-img" id="user-img" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png" alt=""></li>
         <li class="search-li">
             <form class="search" action="">
                 <input type="text" placeholder="Search.." name="search">
@@ -60,6 +60,7 @@
             <div class="container" style="background-color:#f1f1f1">
                 <button type="button" onclick="document.getElementById('id01').style.display='none'"
                     class="cancelbtn">Cancel</button>
+                <button type="button" onclick="googleSignin()" class="cancelbtn google-signin">signup with google</button>
                 <span class="psw">Forgot <a href="#">password?</a></span>
             </div>
         </form>
@@ -346,8 +347,16 @@
         </div>
 
     </section>
-    <script src="./js/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+
     <script src="./js/utility.js"></script>
+    <script src="./js/firebase.js"></script>
+    
 
 </body>
 
