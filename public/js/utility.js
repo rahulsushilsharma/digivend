@@ -38,3 +38,9 @@ document.getElementById('signin_tab_btn').addEventListener('click',()=>{
   document.getElementById('login_tab').style.display = 'none'
   document.getElementById('signin_tab').style.display = 'block'
 })
+
+$('.main-carousel').flickity({
+  // options
+  cellAlign: 'left',
+  contain: true
+});
