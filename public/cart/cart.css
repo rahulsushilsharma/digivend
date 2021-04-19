@@ -1,0 +1,51 @@
+.cart {
+  margin: 7rem auto 0;
+  display: grid;
+  gap: 0.5rem;
+  background-color: var(--bg-secondary);
+  width: 90%;
+  padding: 1rem;
+  border-radius: 0.7rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 2fr 3fr 1fr 1fr;
+  gap: 0.5rem;
+  height: 6rem;
+  background: var(--bg-primary);
+}
+
+.item img {
+  width: 5rem;
+  margin: 7px 10px;
+}
+
+.quantity,
+.remove {
+  height: 2rem;
+}
+.quantity {
+  width: 4rem;
+  border-radius: 0.5rem;
+  outline: none;
+  padding: 0 0.5rem;
+}
+.quantity,
+.remove,
+.disc {
+  margin: 2rem 0 0;
+}
+
+.remove {
+  margin: 2rem 1rem 0 0;
+  background: var(--tag-primary);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 2px 3px 12px -6px var(--card-box);
+  cursor: pointer;
+}
+.remove:hover {
+  box-shadow: 2px 3px 12px -6px var(--text-primary);
+}

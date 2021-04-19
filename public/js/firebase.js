@@ -147,16 +147,18 @@ document.getElementById("form_login").addEventListener(
   "click",
 
   () => {
-    let email = "nuts@gmail.com";
-    let password = "thisnuts#123";
-
+    let email = document.getElementById("login_email").value;
+    let password = document.getElementById("login_pass").value;
+    // console.log(email, password);
     firebase
       .auth()
-      .signInUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-        // Signed in
+
         var user = userCredential.user;
-        // ...
+        
+        var modal = document.getElementById("id01");
+        modal.style.display = "none";
         console.log(user);
       })
       .catch((error) => {
@@ -167,3 +169,7 @@ document.getElementById("form_login").addEventListener(
       });
   }
 );
+
+let currentPath = window.location.pathname;
+
+console.log(currentPath);

@@ -5,22 +5,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digivend | Home</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./css/flickity.css">
-    <link rel="stylesheet" href="./css/notifications.css">
-    <script src="./js/flickity.pkgd.min.js"></script>
+    <title>Digivend | Contact</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./cart.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 </head>
 
 <body>
 
-    <!-- <div class="header">
-        <h2>Digivend</h2>
-        <p>An online shoping platform.</p>
-    </div> -->
     <nav class="navbar">
         <div class="nav-icons">
             <a href="#" class="nav-link">
@@ -39,8 +31,11 @@
 
         </div>
         <div class="user">
-            <a href="http://"><img class="user-img" id="user-img"
+            <a href="#"><img referrerpolicy="origin" class="user-img" id="user-img"
                     src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></a>
+
+
+
             <button id="nav_login" onclick="document.getElementById('id01').style.display='block'"
                 style="width:auto;">login</button>
             <button id="nav_logout" onclick="googleSignout()">Logout</button>
@@ -87,6 +82,7 @@
         </div>
     </nav>
 
+    <div class="product-head"></div>
 
 
     <div id="id01" class="modal ">
@@ -102,10 +98,10 @@
                 <h3 style="text-align: center;">login</h3>
 
                 <label for="uname"><b>Email</b></label>
-                <input id="login_email" type="email" placeholder="Enter Email" name="uname" required>
+                <input  id="login_email" type="email" placeholder="Enter Email" name="uname" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input id="login_pass" type="password" placeholder="Enter Password" name="psw" required>
+                <input id="login_pass"  type="password" placeholder="Enter Password" name="psw" required>
                 <label>
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                 </label>
@@ -149,7 +145,7 @@
                 <label for="psw"><b>Retype Password</b></label>
                 <input type="password" placeholder="Retype  Password" name="psw" required>
 
-                <button id="form_Signup">Signup</button>
+                <button id="form_signup">Signup</button>
                 <button type="button" onclick="googleSignin()" class="google-signin">
                     <svg width="3rem" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -181,16 +177,16 @@
         </form>
 
     </div>
-    <div class="main-carousel">
-        <div class="carousel-cell"><img src="https://rukminim1.flixcart.com/flap/5000/5000/image/4cbad7e0c2589d89.jpg"
-                alt=""></div>
-        <div class="carousel-cell"><img src="https://ruakminim1.flixcart.com/flap/5000/5000/image/4cbad7e0c2589d89.jpg"
-                alt=""></div>
-        <div class="carousel-cell"><img src="https://rukminim1.flixcart.com/flap/5000/5000/image/4cbad7e0c2589d89.jpg"
-                alt=""></div>
 
+    <!-- main content of page -->
+    <div id="cart-main" class="cart">
+        <div class="item">
+            <img src="" alt="">
+            <p class="disc">HOPPUP Volt With 15 Hours Play Time Neckband Bluetooth Headset </p>
+            <input class="quantity" type="number" name="quantity" id="quantity">
+            <button class="remove">Remove</button>
+        </div>
     </div>
-    <div id="main"></div>
 
 
     <footer>
@@ -199,6 +195,8 @@
                 <li><a href="#">about</a></li>
                 <li><a href="#">Contact us</a></li>
                 <li><a href="#">legal</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">privicy policy</a></li>
             </ul>
         </div>
         <div class="info">
@@ -255,37 +253,10 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
-    <script src="./js/utility.js"></script>
-    <script src="./js/firebase.js"></script>
-    <script src="./js/notifications.js"></script>
-    <script>
-        $('.main-carousel').flickity({
-            // options
-            cellAlign: 'left',
-            imagesLoaded: true,
-            percentPosition: false,
-            contain: true,
-            autoPlay: 2000,
-            wrapAround: true
-
-        });
-        const successNotification = window.createNotification({
-            theme: 'success',
-            showDuration: 5000
-        });
-
-        // Invoke success notification
-        successNotification({
-            message: 'Simple success notification'
-        });
-
-        // Use the same instance but pass a title
-        successNotification({
-            title: 'Working',
-            message: 'Simple success notification'
-        });
-
-    </script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/utility.js"></script>
+    <script src="../js/lockr.js"></script>
+    <script src="./cart.js"></script>
 
 </body>
 
