@@ -1,12 +1,10 @@
-let dummyData = {
-  img:
-    "https://rukminim1.flixcart.com/image/416/416/kidgnm80-0/headphone/q/a/e/volt-with-15-hours-play-time-hoppup-original-imafy6mnu3f7pccz.jpeg?q=70",
-  title:
-    "HOPPUP Volt With 15 Hours Play Time Neckband Bluetooth Headset  (Black, In the Ear)",
-  disc: `
-    This HOPPUP Bluetooth headset is here to make an impression with its stylish design and innovative features. The magnetic earbuds ensure tangle-free usage, saving you a lot of trouble. The dynamic drivers provide natural, clear, and high-definition sound so that you can enjoy listening to all your favourite tunes.`,
-  price: 599,
-};
+var queryString = decodeURIComponent(window.location.search);
+queryString = queryString.substring(1);
+
+console.log(queryString);
+
+let title = document.querySelector('title');
+title.innerText = `Digivend | ${queryString}`
 
 function renderUI(data) {
   let main = document.getElementById("product-details-main");

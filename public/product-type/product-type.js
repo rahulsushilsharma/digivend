@@ -1,20 +1,15 @@
-// var queryString = decodeURIComponent(window.location.search);
-// queryString = queryString.substring(1);
+var queryString = decodeURIComponent(window.location.search);
+queryString = queryString.substring(1);
 
-// console.log(queryString);
+console.log(queryString);
 
-// let heading = document.getElementsByClassName('product-head')[0];
-
-// let heading_data = document.createElement("h2");
-
-// heading_data.innerText = queryString;
-
-// heading.appendChild(heading_data);
+let title = document.querySelector('title');
+title.innerText = `Digivend | ${queryString}`
 
 function renderUI(data, id) {
   let main = document.getElementById("product-type-main");
   let card = document.createElement("div");
-  let discounted_price = (data.price * data.discount) / 100;
+  let discounted_price = data.price - (data.price * data.discount) / 100;
   card.classList.add("card");
 
   card.innerHTML = `
@@ -26,8 +21,8 @@ function renderUI(data, id) {
           </a>
     
               <p class="discount"> <span>${data.discount}</span>% off</p>
-              <p class="price">₹${data.price}</p>
               <p class="discounted_price">₹<span>${discounted_price}</span></p>
+              <p class="price">₹${data.price}</p>
             <button onclick="addToCart(event)" class="cart_div">
               <svg  height="40pt" viewBox="0 -30 511.99961 511" width="40pt" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -89,10 +84,11 @@ function addToCart(event) {
     let data = {
       id: id,
       title: card.children[1]?.children[0]?.children[0]?.innerText,
-      price: parseInt(card?.children[1]?.children[3]?.children[0]?.innerText),
+      price: parseInt(card?.children[1]?.children[2]?.children[0]?.innerText),
       img: card?.children[0].src,
       link: card?.children[1]?.children[0].href,
     };
+    console.log(card?.children[1]?.children[2]);
     successNotification({
       message: "Sucessfully added to the cart ",
     });

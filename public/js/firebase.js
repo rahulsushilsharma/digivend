@@ -73,7 +73,8 @@ function googleSignout() {
         successNotification({
           message: "logged out sucessfull ",
         });
-        document.getElementById("user-img").src = "https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
+        document.getElementById("user-img").src =
+          "https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png";
       },
       function (error) {
         console.log("Signout Failed");
@@ -83,19 +84,6 @@ function googleSignout() {
       }
     );
 }
-
-const searchInput = document.getElementById("search-input");
-
-function search() {
-  console.log(searchInput.value, window.location);
-  window.location = "search/search.html?" + searchInput.value;
-  let main = document.getElementById("main");
-  main.innerHTML = `<h2>${searchInput.value}</h2>`;
-}
-
-searchInput.addEventListener("keyup", (ev) => {
-  if (ev.key == "Enter") search();
-});
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
@@ -110,10 +98,8 @@ firebase.auth().onAuthStateChanged((user) => {
     document.getElementById("nav_login").style.display = "block";
     document.getElementById("nav_logout").style.display = "none";
     console.log("not signed in");
-    
   }
 });
-
 
 document.getElementById("form_login").addEventListener(
   "click",
@@ -142,7 +128,6 @@ document.getElementById("form_login").addEventListener(
       });
   }
 );
-
 
 document.getElementById("form_signup").addEventListener(
   "click",
@@ -178,3 +163,14 @@ document.getElementById("form_signup").addEventListener(
   }
 );
 
+const searchInput = document.getElementById("search-input");
+
+function search() {
+  let search_value = searchInput.value.trim();
+  let newUrl  = window.location.protocol + "//" + window.location.host + "/search" + "?" + search_value;
+  window.location.assign(newUrl)
+}
+
+searchInput.addEventListener("keyup", (ev) => {
+  if (ev.key == "Enter") search();
+});
