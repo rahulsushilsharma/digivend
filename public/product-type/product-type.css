@@ -1,4 +1,38 @@
-.product-head{
-    text-align: center;
-    margin: 1rem 0;
+.product-head {
+  text-align: center;
+  margin: 1rem 0;
 }
+
+.card img {
+  width: 14rem;
+}
+
+.prod-disc {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: var(--bg-primary);
+  left: 0;
+  padding: 0 0.5rem;
+}
+.prod-disc svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.cart_div {
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  cursor: pointer;
+  height: 3rem;
+  width: 3rem;
+  background: var(--bg-secondary);
+  border-radius: 50%;
+  border: none;
+}
+.cart_div:focus {
+  background: var(--card-box);
+}
+
+

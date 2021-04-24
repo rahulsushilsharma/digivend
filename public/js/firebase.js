@@ -10,6 +10,22 @@ var firebaseConfig = {
   measurementId: "G-D52LPKXD3Q",
 };
 
+const successNotification = window.createNotification({
+  theme: "success",
+  showDuration: 3000,
+  positionClass: "nfc-bottom-right",
+});
+const warningNotification = window.createNotification({
+  theme: "warning",
+  showDuration: 3000,
+  positionClass: "nfc-bottom-right",
+});
+const errorNotification = window.createNotification({
+  theme: "error",
+  showDuration: 3000,
+  positionClass: "nfc-bottom-right",
+});
+
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var db = firebase.firestore();
@@ -41,6 +57,9 @@ function googleSignin() {
 
       console.log(error.code);
       console.log(error.message);
+      errorNotification({
+        message: error.message,
+      });
     });
 }
 
@@ -51,49 +70,18 @@ function googleSignout() {
 
     .then(
       function () {
-        document.getElementById("user-img").src =
-          "https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png";
-        console.log(
-          "Signout Succesfull",
-          document.getElementById("user-img").src
-        );
+        successNotification({
+          message: "logged out sucessfull ",
+        });
+        document.getElementById("user-img").src = "https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
       },
       function (error) {
         console.log("Signout Failed");
+        errorNotification({
+          message: "logged out failed ",
+        });
       }
     );
-}
-
-function callDbForMainPage() {
-  db.collection("main_page")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-        renderUI(doc.data());
-      });
-    });
-}
-
-// UI render
-
-function renderUI(data) {
-  let main = document.getElementById("main");
-  let card = document.createElement("div");
-  card.classList.add("card");
-  card.innerHTML = `
-  
-    <a href="./product-type/product-type.html?">
-      <img src="${data.img}">
-        <div class="prod-disc">
-          <p class="disc-line">Shirts & Trousers</p>
-          <p class="offer-line">Upto 70% Off</p>
-          <p class="prmo-line">Peter England, Arrow, Mufti...</p>
-        </div>
-    </a>
-
-`;
-  main.appendChild(card);
 }
 
 const searchInput = document.getElementById("search-input");
@@ -109,39 +97,23 @@ searchInput.addEventListener("keyup", (ev) => {
   if (ev.key == "Enter") search();
 });
 
-callDbForMainPage();
-
-// let email = "nuts@gmail.com";
-// let password = "thisnuts#123";
-
-// firebase
-//   .auth()
-//   .createUserWithEmailAndPassword(email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     var user = userCredential.user;
-//     // ...
-//     console.log(user);
-//   })
-//   .catch((error) => {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     console.log(errorCode, errorMessage);
-//     // ..
-//   });
-
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
-    console.log(user);
-    document.getElementById("user-img").src = user.photoURL;
+    if (user.photoURL != null)
+      document.getElementById("user-img").src = user.photoURL;
     document.getElementById("nav_login").style.display = "none";
     document.getElementById("nav_logout").style.display = "block";
+    successNotification({
+      message: "logged from " + user.email,
+    });
   } else {
     document.getElementById("nav_login").style.display = "block";
     document.getElementById("nav_logout").style.display = "none";
     console.log("not signed in");
+    
   }
 });
+
 
 document.getElementById("form_login").addEventListener(
   "click",
@@ -154,9 +126,8 @@ document.getElementById("form_login").addEventListener(
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
-
         var user = userCredential.user;
-        
+
         var modal = document.getElementById("id01");
         modal.style.display = "none";
         console.log(user);
@@ -165,11 +136,45 @@ document.getElementById("form_login").addEventListener(
         var errorCode = error.code;
         var errorMessage = error.message;
         console.log(errorCode, errorMessage);
-        // ..
+        errorNotification({
+          message: error.message,
+        });
       });
   }
 );
 
-let currentPath = window.location.pathname;
 
-console.log(currentPath);
+document.getElementById("form_signup").addEventListener(
+  "click",
+
+  () => {
+    let email = document.getElementById("signup_email").value;
+    let password = document.getElementById("signup_pass").value;
+    let retypePassword = document.getElementById("signup_retype_pass").value;
+    // console.log(email, password);
+    if (password != retypePassword) {
+      warningNotification({
+        message: "password does not match",
+      });
+    } else {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          var user = userCredential.user;
+          var modal = document.getElementById("id01");
+          modal.style.display = "none";
+          console.log(user);
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          errorNotification({
+            message: error.message,
+          });
+        });
+    }
+  }
+);
+

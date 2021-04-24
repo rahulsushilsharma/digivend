@@ -10,3 +10,7 @@
 // heading_data.innerText = queryString;
 
 // heading.appendChild(heading_data);
+
+
+db.collection("Baby_Care")
+.where("tags", "array-contains", "baby")
