@@ -1,11 +1,13 @@
-
 function renderUIForCart() {
   cartLS.list().forEach((data) => {
     let main = document.getElementById("cart-main");
     let card = document.createElement("div");
     card.innerHTML = `
     <div class="item">
-        <img src="${data.img}" alt="">
+    <a href="../product-details/product-details.html?${data.title}">
+    <img src="${data.img}" alt="">
+          </a>
+        
         <p class="disc">${data.title}</p>
         <p class="price">₹  ${data.price}</p>
         <input class="quantity" oninput="updateQuantity(event)" type="number" name="quantity" value = ${data.quantity} id="quantity">
@@ -17,8 +19,6 @@ function renderUIForCart() {
     main.appendChild(card);
   });
 }
-
-
 
 // cartLS.add({ id: 1, name: "Product 1", price: 100 });
 // cartLS.add({ id: 2, name: "Product 2", price: 100 }, 4);
@@ -42,7 +42,7 @@ function calculatetotal() {
 }
 function updateQuantity(event) {
   let id = event.path[1].children[5].innerText;
-  cartLS.update(parseInt(id), "quantity",parseInt(event.target.value));
+  cartLS.update(parseInt(id), "quantity", parseInt(event.target.value));
   // console.log(parseInt(id), parseInt(event.target.value));
   calculatetotal();
 }

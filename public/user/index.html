@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digivend | Contact</title>
+    <title>Digivend | Product Type</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="./product-details.css">
+    <link rel="stylesheet" href="./user.css">
     <link rel="stylesheet" href="../css/notifications.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 </head>
 
@@ -33,7 +33,7 @@
 
         </div>
         <div class="user">
-            <a href="../user"><img class="user-img" id="user-img" rel="noreferrer"
+            <a href="../user/"><img class="user-img" id="user-img" rel="noreferrer"
                     src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></a>
             <button id="nav_login" onclick="document.getElementById('id01').style.display='block'"
                 style="width:auto; display: none;">login</button>
@@ -120,10 +120,10 @@
             <div class="imgcontainer">
                 <a class="login_form_tab" id="login_tab_btn">Login</a>
                 <a class="login_form_tab" id="signin_tab_btn">Signup</a>
-                
-                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                <span onclick="document.getElementById('id01').style.display='none'; window.location = '/'; " class="close"
                     title="Close Modal">&times;</span>
             </div>
+
             <div id="login_tab" class="form-container">
                 <h3 style="text-align: center;">login</h3>
 
@@ -137,8 +137,6 @@
                 </label>
 
                 <button id="form_login">Login</button>
-
-
                 <button type="button" onclick="googleSignin()" class="google-signin">
                     <svg width="3rem" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
@@ -175,7 +173,8 @@
                 <input id="signup_pass" type="password" placeholder="Enter Password" name="psw_signup" required>
 
                 <label for="psw_retype_signup"><b>Retype Password</b></label>
-                <input id="signup_retype_pass" type="password" placeholder="Retype Password" name="psw_retype_signup" required>
+                <input id="signup_retype_pass" type="password" placeholder="Retype Password" name="psw_retype_signup"
+                    required>
 
                 <button id="form_signup" type="button">Signup</button>
                 <button type="button" onclick="googleSignin()" class="google-signin">
@@ -207,44 +206,46 @@
 
             </div>
         </form>
-    </div>
-    <!-- main content of page -->
 
-    <div class="spinner_box" id="loading_spinner">
-        <svg class="loading_spinner" width="57" height="57" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg"
-            stroke="#fff">
-            <g fill="none" fill-rule="evenodd">
-                <g transform="translate(1 1)" stroke-width="2">
-                    <circle cx="5" cy="50" r="5">
-                        <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear"
-                            repeatCount="indefinite" />
-                        <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear"
-                            repeatCount="indefinite" />
-                    </circle>
-                    <circle cx="27" cy="5" r="5">
-                        <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5"
-                            calcMode="linear" repeatCount="indefinite" />
-                        <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27"
-                            calcMode="linear" repeatCount="indefinite" />
-                    </circle>
-                    <circle cx="49" cy="50" r="5">
-                        <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear"
-                            repeatCount="indefinite" />
-                        <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49"
-                            calcMode="linear" repeatCount="indefinite" />
-                    </circle>
-                </g>
-            </g>
-        </svg>
-        <h2 style="text-align: center;">Loading.... Please Wait</h2>
     </div>
-    <div id="product-details-main" class="product-details">
-        
+    
+
+    <div class="user_page">
+        <div>
+            <img id="user-img-page" rel="noreferrer"
+                src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
+        </div>
+
+        <table>
+
+            <tr>
+                <td >Name</td>
+
+                <td style="display: grid;grid-template-columns: 5fr 1fr;"><input style="width: 100%;" id="name" class="search-input" type="text" placeholder=""><button
+                        class="search-button" onclick="updateName()">Update Name</button></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td id="email"></td>
+            </tr>
+            <tr>
+                <td>Joined</td>
+                <td id="joined"></td>
+
+            </tr>
+            <tr>
+                <td>last Sign In Time</td>
+                <td id="last"></td>
+
+            </tr>
+
+        </table>
     </div>
-    <div  id="comment_area"></div>
-    <div  id="comment"></div>
+
+
 
     <footer>
+
         <div class="links">
             <ul>
                 <li><a href="#">about</a></li>
@@ -309,10 +310,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
+    <script src="../js/lockr.js"></script>
+
     <script src="../js/firebase.js"></script>
     <script src="../js/utility.js"></script>
-    <script src="../js/lockr.js"></script>
-    <script src="./product-details.js"></script>
+    <script src="./user.js"></script>
 
 </body>
 

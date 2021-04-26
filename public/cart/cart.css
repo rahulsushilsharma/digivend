@@ -69,7 +69,7 @@
 .total {
   background: var(--bg-secondary);
   width: 93%;
-  margin: 1rem auto;
+  margin: 1rem auto 24rem;
   padding: 1rem;
   text-align: center;
   font-weight: bold;

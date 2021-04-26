@@ -126,8 +126,7 @@ No Parabens, No Sulfates, No Dye`,
   {
     img:
       "https://images-na.ssl-images-amazon.com/images/I/61y3mRVvIHL._SL1280_.jpg",
-    title: `
-      Little Chime New Born Baby Window Cradle Hanger/jhula/jhoola/Cot Metal Hanger/Baby Hanging Swing Cradle/Cradle for Baby Window Cradle Metal Hanger(Black)e`,
+    title: `Little Chime New Born Baby Window Cradle Hanger/jhula/jhoola/Cot Metal Hanger/Baby Hanging Swing Cradle/Cradle for Baby Window Cradle Metal Hanger(Black)e`,
     disc: `
   Capacity - 20 kg
   Very Strong and High Quality GP Pipe in used this Window Cradle and Black powder coating done
@@ -138,9 +137,7 @@ No Parabens, No Sulfates, No Dye`,
   },
   {
     img: "https://images-na.ssl-images-amazon.com/images/I/5189QAHawQL.jpg",
-    title: `
-      
-Amardeep Toddler Mosquito and Insect Protection Net/Mattress Pink Teddy Print 70 * 40 cms`,
+    title: `Amardeep Toddler Mosquito and Insect Protection Net/Mattress Pink Teddy Print 70 * 40 cms`,
     disc: `
   Allows fresh air to breeze in, while blocks out insects and mosquitoes and dust.
 Supported by strong plastic Wire Frame.
@@ -207,7 +204,23 @@ adjustment and Soft-touch area on the handle for comfortable carrying and Chest 
   },
 ];
 
-dummyData.forEach((disc,index)=>{
+// dummyData.forEach((disc,index)=>{
+//   disc.id = index;
+//   writeInDb("Baby_Care",disc)
+//   // console.log(disc);
+// })
 
-  writeInDb("Baby_Care",{disc, id :index})
-})
+
+// db.collection("producr_id")
+//   .get()
+//   .then((querySnapshot) => {
+
+//     if (querySnapshot.empty) {
+//       console.log("no documents found");
+//     } else {
+//       querySnapshot.forEach((doc) => {
+//         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+//         doc.data().id
+//       });
+//     }
+//   });

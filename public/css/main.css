@@ -46,7 +46,7 @@
   --bg-secondary: #f5e5b8;
   --sh-primary: #fdf6e3 54;
   --sh-secondary: #fdf6e3;
-  --card-box: #35535c59;
+  --card-box: #77777759;
 }
 * {
   margin: 0;
@@ -361,7 +361,7 @@ a:hover {
   margin: 5rem auto 0;
 }
 .search {
-  padding: 0.7rem;
+  padding: 0.7rem 0;
   z-index: 999;
   transition: var(--transition-speed);
 }

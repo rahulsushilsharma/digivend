@@ -3,10 +3,19 @@ queryString = queryString.substring(1);
 
 console.log(queryString);
 
-let title = document.querySelector('title');
-title.innerText = `Digivend | ${queryString}`
+let title = document.querySelector("title");
+title.innerText = `Digivend | ${queryString}`;
 
-function renderUI(data, id) {
+function renderComments(data) {
+  let main = document.getElementById("comment_area");
+  let card = document.createElement("div");
+  card.innerHTML = `
+  
+  `;
+  main.appendChild(card);
+}
+
+function renderUI(data, id, rating) {
   let main = document.getElementById("product-type-main");
   let card = document.createElement("div");
   let discounted_price = data.price - (data.price * data.discount) / 100;
@@ -19,7 +28,10 @@ function renderUI(data, id) {
           <a href="../product-details/product-details.html?${data.title}">
               <p class="disc-line">${data.title}</p>
           </a>
-    
+    <div id = "product-type-main"><div id="rating">
+    <p>${rating}</p>
+    <span class="fa fa-star checked"></span>
+</div></div>
               <p class="discount"> <span>${data.discount}</span>% off</p>
               <p class="discounted_price">₹<span>${discounted_price}</span></p>
               <p class="price">₹${data.price}</p>
@@ -65,13 +77,28 @@ function renderUI(data, id) {
 let firebaseData;
 
 function callDbForProductType() {
-  db.collection("Baby_Care")
+  db.collection("search")
+    .where("tags", "array-contains", queryString)
     .get()
     .then((querySnapshot) => {
       document.getElementById("loading_spinner").style.display = "none";
       querySnapshot.forEach((doc) => {
-        // console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-        renderUI(doc.data().disc, doc.data().id);
+        firebaseData = doc.data();
+        doc_id = doc.id;
+        console.log(firebaseData);
+
+        if (firebaseData.comments) {
+          let rating = 0;
+          firebaseData.comments.forEach((data) => {
+            rating = rating + data.rating;
+          });
+          rating = rating / firebaseData.comments.length;
+          console.log(firebaseData, firebaseData.id, rating);
+
+          renderUI(firebaseData, firebaseData.id, rating);
+        } else {
+          renderUI(firebaseData, firebaseData.id, "0");
+        }
       });
     });
 }
@@ -93,8 +120,7 @@ function addToCart(event) {
       message: "Sucessfully added to the cart ",
     });
     cartLS.add(data);
-    
-  }else{
+  } else {
     errorNotification({
       message: "Already added to the cart",
     });

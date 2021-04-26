@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digivend | Search</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./search.css">
     <link rel="stylesheet" href="../css/notifications.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
 
 </head>
@@ -34,7 +35,7 @@
 
         </div>
         <div class="user">
-            <a href="http://"><img class="user-img" id="user-img" rel="noreferrer"
+            <a href="../user/"><img class="user-img" id="user-img" rel="noreferrer"
                     src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></a>
             <button id="nav_login" onclick="document.getElementById('id01').style.display='block'"
                 style="width:auto; display: none;">login</button>
@@ -172,7 +173,8 @@
                 <input id="signup_pass" type="password" placeholder="Enter Password" name="psw_signup" required>
 
                 <label for="psw_retype_signup"><b>Retype Password</b></label>
-                <input id="signup_retype_pass" type="password" placeholder="Retype Password" name="psw_retype_signup" required>
+                <input id="signup_retype_pass" type="password" placeholder="Retype Password" name="psw_retype_signup"
+                    required>
 
                 <button id="form_signup" type="button">Signup</button>
                 <button type="button" onclick="googleSignin()" class="google-signin">
@@ -209,95 +211,41 @@
 
 
     <!-- main content of page -->
-    <div id="main" class="main-content">
-        <div class="card">
-            <a href="./product-type/product-type.html?Kitchen essentials">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/k6s82vk0/gas-stove/r/w/h/14449-pigeon-original-imafp5sg2sywguxv.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Kitchen essentials</p>
-                    <p class="offer-line">upto 30% off</p>
-                    <p class="prmo-line">Limited time offer</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?Baby Care">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/jx7uykw0/blanket/c/m/5/swaddle-bag-pink-swaddle-bag-pink-miss-chief-original-imafhqdvhxmh87ym.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Baby Care</p>
-                    <p class="offer-line">Min 30% Off</p>
-                    <p class="prmo-line">Baby Mat, Bedding & More</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?Shirts Trousers">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/jxp08sw0/shirt/f/u/s/42-7189985-roadster-original-imafg3fzyk8tg2gn.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Shirts & Trousers</p>
-                    <p class="offer-line">Upto 70% Off</p>
-                    <p class="prmo-line">Peter England, Arrow, Mufti...</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?Fastrack, Titan, Sonata...">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/k0o69ow0/watch/j/m/c/77106sl03-sonata-original-imafkf7wfghhmwve.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Fastrack, Titan, Sonata...</p>
-                    <p class="offer-line">Upto 60%+Extra 15%Off</p>
-                    <p class="prmo-line">Awesome Deal</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?Headphones">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/k9re3rk0/headphone/b/f/g/rockerz-255f-rockerz-255-boat-original-imafrheg2afmrruy.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Headphones</p>
-                    <p class="offer-line">Upto 70% off</p>
-                    <p class="prmo-line">Sony,JBL & More</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?Trackpant , Shorts, Tracksuits..">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/kc3p30w0/track-pant/y/f/z/m-i674-black-u-s-polo-assn-original-imaftaww7b49zcja.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Trackpant , Shorts, Tracksuits..</p>
-                    <p class="offer-line">Upto 80%+Extra10%Off</p>
-                    <p class="prmo-line">Best Summer Styles</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?kitchen-products">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/k6s82vk0/gas-stove/r/w/h/14449-pigeon-original-imafp5sg2sywguxv.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Kitchen essentials</p>
-                    <p class="offer-line">upto 30% off</p>
-                    <p class="prmo-line">Limited time offer</p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="./product-type/product-type.html?kitchen-products">
-                <img
-                    src="https://rukminim1.flixcart.com/image/200/200/k6s82vk0/gas-stove/r/w/h/14449-pigeon-original-imafp5sg2sywguxv.jpeg?q=70">
-                <div class="prod-disc">
-                    <p class="disc-line">Kitchen essentials</p>
-                    <p class="offer-line">upto 30% off</p>
-                    <p class="prmo-line">Limited time offer</p>
-                </div>
-            </a>
-        </div>
+    <div class="spinner_box" id="loading_spinner">
+        <svg class="loading_spinner" width="57" height="57" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg"
+            stroke="#fff">
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(1 1)" stroke-width="2">
+                    <circle cx="5" cy="50" r="5">
+                        <animate attributeName="cy" begin="0s" dur="2.2s" values="50;5;50;50" calcMode="linear"
+                            repeatCount="indefinite" />
+                        <animate attributeName="cx" begin="0s" dur="2.2s" values="5;27;49;5" calcMode="linear"
+                            repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="27" cy="5" r="5">
+                        <animate attributeName="cy" begin="0s" dur="2.2s" from="5" to="5" values="5;50;50;5"
+                            calcMode="linear" repeatCount="indefinite" />
+                        <animate attributeName="cx" begin="0s" dur="2.2s" from="27" to="27" values="27;49;5;27"
+                            calcMode="linear" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="49" cy="50" r="5">
+                        <animate attributeName="cy" begin="0s" dur="2.2s" values="50;50;5;50" calcMode="linear"
+                            repeatCount="indefinite" />
+                        <animate attributeName="cx" from="49" to="49" begin="0s" dur="2.2s" values="49;5;27;49"
+                            calcMode="linear" repeatCount="indefinite" />
+                    </circle>
+                </g>
+            </g>
+        </svg>
+        <h2 style="text-align: center;">Loading.... Please Wait</h2>
+    </div>
+    <div class="spinner_box" style="display: none;" id="no_results">
+
+        <h2 style="text-align: center;margin: 30vh 0 0;">Sorry, No results found </h2>
+        <p style="text-align: center;">Try something else </p>
+    </div>
+    <div id="product-type-main" class="main-content">
+
     </div>
 
     <footer>
@@ -384,10 +332,12 @@
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
+    <script src="../js/firebase.js"></script>
+    <script src="../js/lockr.js"></script>
+
     <script src="../js/utility.js"></script>
     <script src="./search.js"></script>
 
-    <script src="../js/firebase.js"></script>
 
 
 </body>

@@ -1,0 +1,34 @@
+.user_page{
+    display: grid;
+    width: 95%;
+    margin: 5rem auto;
+    gap: 1rem;
+    min-height: 70vh;
+    text-align: center;
+}
+
+#user-img-page{
+    width: 12rem;
+    height: 12rem;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 95%;
+    margin: 0 auto;
+  }
+  
+  td, th {
+    border: 1px solid var(--bg-primary);
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: var(--bg-secondary);
+  }
