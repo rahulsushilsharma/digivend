@@ -3,7 +3,7 @@
   padding: 1rem;
 }
 .product {
-  min-height: 75vh;
+  min-height: 50vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   box-shadow: 0 0 12px 0 var(--card-box);
@@ -62,7 +62,7 @@ p {
   background-color: var(--tag-primary);
   height: 2rem;
   border: none;
-  width: 5rem;
+  width: 7rem;
   border-radius: 0.5rem;
   font-weight: bold;
   box-shadow: 2px 3px 12px -6px var(--tag-primary);
