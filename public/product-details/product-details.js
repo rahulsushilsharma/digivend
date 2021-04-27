@@ -11,7 +11,11 @@ function renderUI(data, rating__) {
   console.log(rating__);
   let main = document.getElementById("product-details-main");
   let card = document.createElement("div");
-  let discounted_price = data.price - (data.price * data.discount) / 100;
+  let discounted_price = Math.round(
+    data.price - (data.price * data.discount) / 100
+  );
+  rating__ = Math.round(rating__ * 10) / 10;
+  console.log(rating__);
   card.classList.add("product");
   card.innerHTML = `
     

@@ -139,13 +139,15 @@ p {
   background: var(--nav-bg-primary);
 }
 
-#rate{
+#rate {
   display: inline;
   width: 4rem;
 }
-#user_cumment{
+#user_cumment {
   height: 5rem;
   border-radius: 0.5rem;
+  padding: 1rem;
+  width: 90%;
 }
 
 #comment_area {
@@ -156,4 +158,13 @@ p {
 }
 .meta {
   padding: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .product {
+    grid-template-columns: unset;
+  }
+  .cart-button {
+    width: 7rem;
+  }
 }

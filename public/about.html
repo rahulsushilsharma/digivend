@@ -2,31 +2,309 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digivend | About</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/notifications.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digivend | About</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="./css/notifications.css">
 
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-  
 </head>
 
 <body>
+  <style>
+    .about-section{
+      margin-top: 4rem;
+    }
+    .row {
+      display: grid;
+      gap: 3rem;
+      grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+      width: 90%;
+      margin: 5rem auto 0;
+    }
 
-    <script src="./js/notifications.js"></script>
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+
+    .about-section {
+      padding: 50px;
+      text-align: center;
+      background-color: #474e5d;
+      color: white;
+    }
+
+    .container {
+      padding: 0 16px;
+    }
+
+    .container::after,
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .title {
+      color: grey;
+    }
+
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .button:hover {
+      background-color: #555;
+    }
+
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
+    }
+  </style>
 
 
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+
+
+
+<nav class="navbar_on_mobile navbar">
+
+  <div class="search_on_mobile">
+      <div class="search-container">
+          <input id="search-input" class="search-input" type="text" placeholder="Search Products">
+          <button class="search-button" onclick="search()">Search</button>
+      </div>
+
+  </div>
+
+</nav>
+  <nav class="navbar">
+    <div class="nav-icons">
+      <a href="./index.html" class="nav-link">
+        <svg class="svg-inline--fa fa-cat fa-w-16 fa-9x" height="511pt" viewBox="0 1 511 511.999" width="511pt"
+          xmlns="http://www.w3.org/2000/svg">
+          <path class="fa-primary" fill="currentColor"
+            d="m498.699219 222.695312c-.015625-.011718-.027344-.027343-.039063-.039062l-208.855468-208.847656c-8.902344-8.90625-20.738282-13.808594-33.328126-13.808594-12.589843 0-24.425781 4.902344-33.332031 13.808594l-208.746093 208.742187c-.070313.070313-.144532.144531-.210938.214844-18.28125 18.386719-18.25 48.21875.089844 66.558594 8.378906 8.382812 19.441406 13.234375 31.273437 13.746093.484375.046876.96875.070313 1.457031.070313h8.320313v153.695313c0 30.417968 24.75 55.164062 55.167969 55.164062h81.710937c8.285157 0 15-6.71875 15-15v-120.5c0-13.878906 11.292969-25.167969 25.171875-25.167969h48.195313c13.878906 0 25.167969 11.289063 25.167969 25.167969v120.5c0 8.28125 6.714843 15 15 15h81.710937c30.421875 0 55.167969-24.746094 55.167969-55.164062v-153.695313h7.71875c12.585937 0 24.421875-4.902344 33.332031-13.8125 18.359375-18.367187 18.367187-48.253906.027344-66.632813zm-21.242188 45.421876c-3.238281 3.238281-7.542969 5.023437-12.117187 5.023437h-22.71875c-8.285156 0-15 6.714844-15 15v168.695313c0 13.875-11.289063 25.164062-25.167969 25.164062h-66.710937v-105.5c0-30.417969-24.746094-55.167969-55.167969-55.167969h-48.195313c-30.421875 0-55.171875 24.75-55.171875 55.167969v105.5h-66.710937c-13.875 0-25.167969-11.289062-25.167969-25.164062v-168.695313c0-8.285156-6.714844-15-15-15h-22.328125c-.234375-.015625-.464844-.027344-.703125-.03125-4.46875-.078125-8.660156-1.851563-11.800781-4.996094-6.679688-6.679687-6.679688-17.550781 0-24.234375.003906 0 .003906-.003906.007812-.007812l.011719-.011719 208.847656-208.839844c3.234375-3.238281 7.535157-5.019531 12.113281-5.019531 4.574219 0 8.875 1.78125 12.113282 5.019531l208.800781 208.796875c.03125.03125.066406.0625.097656.09375 6.644531 6.691406 6.632813 17.539063-.03125 24.207032zm0 0" />
+        </svg>
+      </a>
+    </div>
+    <div class="search">
+      <div class="search-container">
+        <input id="search-input" class="search-input" type="text" placeholder="Search Products">
+        <button class="search-button" onclick="search()">Search</button>
+      </div>
+
+    </div>
+    <div class="user">
+      <a href="./user"><img class="user-img" id="user-img" rel="noreferrer"
+          src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"></a>
+      <button id="nav_login" onclick="document.getElementById('id01').style.display='block'"
+        style="width:auto; display: none;">login</button>
+      <button style="width:auto; display: none;" id="nav_logout" onclick="googleSignout()">Logout</button>
+      <a href="./cart/cart.html">
+        <svg height="40pt" viewBox="0 -30 511.99961 511" width="40pt" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="m195.03125 450.570312c-24.820312 0-45.007812-20.191406-45.007812-45.007812 0-24.820312 20.1875-45.007812 45.007812-45.007812 24.816406 0 45.003906 20.1875 45.003906 45.007812 0 24.816406-20.1875 45.007812-45.003906 45.007812zm0 0"
+            fill="#697c86" />
+          <path
+            d="m195.03125 420.5625c-8.277344 0-15.003906-6.722656-15.003906-15s6.726562-15.003906 15.003906-15.003906 15 6.726562 15 15.003906-6.722656 15-15 15zm0 0"
+            fill="#465a61" />
+          <path
+            d="m407.0625 450.570312c-24.816406 0-45.007812-20.191406-45.007812-45.007812 0-24.820312 20.191406-45.007812 45.007812-45.007812s45.007812 20.1875 45.007812 45.007812c0 24.816406-20.191406 45.007812-45.007812 45.007812zm0 0"
+            fill="#596c76" />
+          <path
+            d="m407.0625 420.5625c-8.277344 0-15.003906-6.722656-15.003906-15s6.726562-15.003906 15.003906-15.003906 15 6.726562 15 15.003906-6.722656 15-15 15zm0 0"
+            fill="#3b4a51" />
+          <path
+            d="m454.46875 345.550781c0 8.402344-6.601562 15.003907-15 15.003907h-287.042969c-24.90625 0-45.007812-20.105469-45.007812-45.007813 0-22.800781 16.800781-41.707031 39.003906-44.40625 1.800781-.601563 3.902344-.601563 6.003906-.601563 3.597657 0 7.199219 1.503907 9.601563 3.902344l-9.003906 26.105469c-.296876 0-.296876 0-.597657 0-8.402343 0-15.003906 6.597656-15.003906 15s6.601563 15.003906 15.003906 15.003906h287.042969c8.398438 0 15 6.597657 15 15zm0 0"
+            fill="#465a61" />
+          <path
+            d="m99.5625 60.542969c.953125 1.199219 17.109375 8.496093 33.375 15.640625.058594-1.292969.222656-2.574219-.070312-3.894532l-13.199219-60.011718c-1.511719-6.886719-7.605469-11.777344-14.652344-11.777344h-90.011719c-8.292968 0-15.003906 6.710938-15.003906 15.003906 0 8.289063 6.710938 15 15.003906 15h77.953125zm0 0"
+            fill="#465a61" />
+          <path
+            d="m454.46875 345.550781c0 8.402344-6.601562 15.003907-15 15.003907h-141.125v-30.003907h141.125c8.398438 0 15 6.597657 15 15zm0 0"
+            fill="#3b4a51" />
+          <path
+            d="m509.078125 66.511719c-3-3.902344-7.203125-6.003907-12.003906-6.003907h-397.460938l46.808594 210.632813 6.601563 29.40625h284.042968c6.601563 0 12.601563-4.503906 14.402344-10.804687l60.007812-210.03125c1.203126-4.5.300782-9.601563-2.398437-13.199219zm0 0"
+            fill="#fdbf00" />
+          <path
+            d="m511.476562 79.710938-60.007812 210.03125c-1.800781 6.300781-7.800781 10.804687-14.402344 10.804687h-138.722656v-240.039063h198.730469c4.800781 0 9.003906 2.101563 12.003906 6.003907 2.699219 3.597656 3.601563 8.699219 2.398437 13.199219zm0 0"
+            fill="#ff9f00" />
+        </svg>
+
+      </a>
+    </div>
+    <div id="themeButton" class="nav-icons" onclick="toggleTheme()">
+      <a href="#" class="nav-link">
+        <svg class="theme-icon" id="lightIcon" aria-hidden="true" focusable="false" data-prefix="fad"
+          data-icon="moon-stars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+          class="svg-inline--fa fa-moon-stars fa-w-16 fa-7x">
+          <g class="fa-group">
+            <path fill="currentColor"
+              d="M320 32L304 0l-16 32-32 16 32 16 16 32 16-32 32-16zm138.7 149.3L432 128l-26.7 53.3L352 208l53.3 26.7L432 288l26.7-53.3L512 208z"
+              class="fa-secondary"></path>
+            <path fill="currentColor"
+              d="M332.2 426.4c8.1-1.6 13.9 8 8.6 14.5a191.18 191.18 0 0 1-149 71.1C85.8 512 0 426 0 320c0-120 108.7-210.6 227-188.8 8.2 1.6 10.1 12.6 2.8 16.7a150.3 150.3 0 0 0-76.1 130.8c0 94 85.4 165.4 178.5 147.7z"
+              class="fa-primary"></path>
+          </g>
+        </svg>
+        <svg class="theme-icon" id="solarIcon" aria-hidden="true" focusable="false" data-prefix="fad" data-icon="sun"
+          role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+          class="svg-inline--fa fa-sun fa-w-16 fa-7x">
+          <g class="fa-group">
+            <path fill="currentColor"
+              d="M502.42 240.5l-94.7-47.3 33.5-100.4c4.5-13.6-8.4-26.5-21.9-21.9l-100.4 33.5-47.41-94.8a17.31 17.31 0 0 0-31 0l-47.3 94.7L92.7 70.8c-13.6-4.5-26.5 8.4-21.9 21.9l33.5 100.4-94.7 47.4a17.31 17.31 0 0 0 0 31l94.7 47.3-33.5 100.5c-4.5 13.6 8.4 26.5 21.9 21.9l100.41-33.5 47.3 94.7a17.31 17.31 0 0 0 31 0l47.31-94.7 100.4 33.5c13.6 4.5 26.5-8.4 21.9-21.9l-33.5-100.4 94.7-47.3a17.33 17.33 0 0 0 .2-31.1zm-155.9 106c-49.91 49.9-131.11 49.9-181 0a128.13 128.13 0 0 1 0-181c49.9-49.9 131.1-49.9 181 0a128.13 128.13 0 0 1 0 181z"
+              class="fa-secondary"></path>
+            <path fill="currentColor" d="M352 256a96 96 0 1 1-96-96 96.15 96.15 0 0 1 96 96z" class="fa-primary">
+            </path>
+          </g>
+        </svg>
+        <svg class="theme-icon" id="darkIcon" aria-hidden="true" focusable="false" data-prefix="fad"
+          data-icon="sunglasses" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+          class="svg-inline--fa fa-sunglasses fa-w-18 fa-7x">
+          <g class="fa-group">
+            <path fill="currentColor"
+              d="M574.09 280.38L528.75 98.66a87.94 87.94 0 0 0-113.19-62.14l-15.25 5.08a16 16 0 0 0-10.12 20.25L395.25 77a16 16 0 0 0 20.22 10.13l13.19-4.39c10.87-3.63 23-3.57 33.15 1.73a39.59 39.59 0 0 1 20.38 25.81l38.47 153.83a276.7 276.7 0 0 0-81.22-12.47c-34.75 0-74 7-114.85 26.75h-73.18c-40.85-19.75-80.07-26.75-114.85-26.75a276.75 276.75 0 0 0-81.22 12.45l38.47-153.8a39.61 39.61 0 0 1 20.38-25.82c10.15-5.29 22.28-5.34 33.15-1.73l13.16 4.39A16 16 0 0 0 180.75 77l5.06-15.19a16 16 0 0 0-10.12-20.21l-15.25-5.08A87.95 87.95 0 0 0 47.25 98.65L1.91 280.38A75.35 75.35 0 0 0 0 295.86v70.25C0 429 51.59 480 115.19 480h37.12c60.28 0 110.38-45.94 114.88-105.37l2.93-38.63h35.76l2.93 38.63c4.5 59.43 54.6 105.37 114.88 105.37h37.12C524.41 480 576 429 576 366.13v-70.25a62.67 62.67 0 0 0-1.91-15.5zM203.38 369.8c-2 25.9-24.41 46.2-51.07 46.2h-37.12C87 416 64 393.63 64 366.11v-37.55a217.35 217.35 0 0 1 72.59-12.9 196.51 196.51 0 0 1 69.91 12.9zM512 366.13c0 27.5-23 49.87-51.19 49.87h-37.12c-26.69 0-49.1-20.3-51.07-46.2l-3.12-41.24a196.55 196.55 0 0 1 69.94-12.9A217.41 217.41 0 0 1 512 328.58z"
+              class="fa-secondary"></path>
+            <path fill="currentColor"
+              d="M64.19 367.9c0-.61-.19-1.18-.19-1.8 0 27.53 23 49.9 51.19 49.9h37.12c26.66 0 49.1-20.3 51.07-46.2l3.12-41.24c-14-5.29-28.31-8.38-42.78-10.42zm404-50l-95.83 47.91.3 4c2 25.9 24.38 46.2 51.07 46.2h37.12C489 416 512 393.63 512 366.13v-37.55a227.76 227.76 0 0 0-43.85-10.66z"
+              class="fa-primary"></path>
+          </g>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <div class="about-section">
+    <h1>About Us Page</h1>
+    <p>Some text about who we are and what we do.</p>
+    <p>Resize the browser window to see that this page is responsive by the way.</p>
+  </div>
+
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
+        <div class="container">
+          <h2>Jane Doe</h2>
+          <p class="title">CEO & Founder</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>jane@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <img src="/w3images/team2.jpg" alt="Mike" style="width:100%">
+        <div class="container">
+          <h2>Mike Ross</h2>
+          <p class="title">Art Director</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>mike@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <img src="/w3images/team3.jpg" alt="John" style="width:100%">
+        <div class="container">
+          <h2>John Doe</h2>
+          <p class="title">Designer</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>john@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="links">
+      <ul>
+        <li><a href="./about.html">about</a></li>
+        <li><a href="./privacy.html">privacy policy</a></li>
+      </ul>
+    </div>
+    <div class="info">
+      <svg width="5rem" height="5rem" viewBox="0 -30 511.99961 511" width="511pt" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m195.03125 450.570312c-24.820312 0-45.007812-20.191406-45.007812-45.007812 0-24.820312 20.1875-45.007812 45.007812-45.007812 24.816406 0 45.003906 20.1875 45.003906 45.007812 0 24.816406-20.1875 45.007812-45.003906 45.007812zm0 0"
+          fill="#697c86" />
+        <path
+          d="m195.03125 420.5625c-8.277344 0-15.003906-6.722656-15.003906-15s6.726562-15.003906 15.003906-15.003906 15 6.726562 15 15.003906-6.722656 15-15 15zm0 0"
+          fill="#465a61" />
+        <path
+          d="m407.0625 450.570312c-24.816406 0-45.007812-20.191406-45.007812-45.007812 0-24.820312 20.191406-45.007812 45.007812-45.007812s45.007812 20.1875 45.007812 45.007812c0 24.816406-20.191406 45.007812-45.007812 45.007812zm0 0"
+          fill="#596c76" />
+        <path
+          d="m407.0625 420.5625c-8.277344 0-15.003906-6.722656-15.003906-15s6.726562-15.003906 15.003906-15.003906 15 6.726562 15 15.003906-6.722656 15-15 15zm0 0"
+          fill="#3b4a51" />
+        <path
+          d="m454.46875 345.550781c0 8.402344-6.601562 15.003907-15 15.003907h-287.042969c-24.90625 0-45.007812-20.105469-45.007812-45.007813 0-22.800781 16.800781-41.707031 39.003906-44.40625 1.800781-.601563 3.902344-.601563 6.003906-.601563 3.597657 0 7.199219 1.503907 9.601563 3.902344l-9.003906 26.105469c-.296876 0-.296876 0-.597657 0-8.402343 0-15.003906 6.597656-15.003906 15s6.601563 15.003906 15.003906 15.003906h287.042969c8.398438 0 15 6.597657 15 15zm0 0"
+          fill="#465a61" />
+        <path
+          d="m99.5625 60.542969c.953125 1.199219 17.109375 8.496093 33.375 15.640625.058594-1.292969.222656-2.574219-.070312-3.894532l-13.199219-60.011718c-1.511719-6.886719-7.605469-11.777344-14.652344-11.777344h-90.011719c-8.292968 0-15.003906 6.710938-15.003906 15.003906 0 8.289063 6.710938 15 15.003906 15h77.953125zm0 0"
+          fill="#465a61" />
+        <path
+          d="m454.46875 345.550781c0 8.402344-6.601562 15.003907-15 15.003907h-141.125v-30.003907h141.125c8.398438 0 15 6.597657 15 15zm0 0"
+          fill="#3b4a51" />
+        <path
+          d="m509.078125 66.511719c-3-3.902344-7.203125-6.003907-12.003906-6.003907h-397.460938l46.808594 210.632813 6.601563 29.40625h284.042968c6.601563 0 12.601563-4.503906 14.402344-10.804687l60.007812-210.03125c1.203126-4.5.300782-9.601563-2.398437-13.199219zm0 0"
+          fill="#fdbf00" />
+        <path
+          d="m511.476562 79.710938-60.007812 210.03125c-1.800781 6.300781-7.800781 10.804687-14.402344 10.804687h-138.722656v-240.039063h198.730469c4.800781 0 9.003906 2.101563 12.003906 6.003907 2.699219 3.597656 3.601563 8.699219 2.398437 13.199219zm0 0"
+          fill="#ff9f00" />
+      </svg>
+      <h2>Digivend</h2>
+      <p>A online shoping platform</p>
+    </div>
+    <div class="social">
+
+    </div>
+
+  </footer>
+
+  <script src="./js/notifications.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
-    <script src="./js/firebase.js"></script>
-    <script src="./js/utility.js"></script>
 
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.0/firebase-firestore.js"></script>
+
+  <script src="./js/utility.js"></script>
+  <script src="./js/firebase.js"></script>
 </body>
 
 </html>

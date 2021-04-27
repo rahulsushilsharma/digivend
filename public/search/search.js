@@ -3,10 +3,6 @@ queryString = queryString.substring(1);
 
 console.log(queryString);
 
-var queryString = decodeURIComponent(window.location.search);
-queryString = queryString.substring(1);
-
-console.log(queryString);
 
 let title = document.querySelector("title");
 title.innerText = `Digivend | ${queryString}`;
@@ -14,11 +10,14 @@ title.innerText = `Digivend | ${queryString}`;
 function renderUI(data, id, rating) {
   let main = document.getElementById("product-type-main");
   let card = document.createElement("div");
-  let discounted_price = data.price - (data.price * data.discount) / 100;
+  let discounted_price = Math.round(data.price - (data.price * data.discount) / 100);
+  rating = Math.round(rating * 10) / 10
   card.classList.add("card");
 
   card.innerHTML = `
-        <img src="${data.img}" >
+  <div>
+  <img src="${data.img}" >
+  </div>
         <div class="prod-disc">
           
           <a href="../product-details/product-details.html?${data.title}">
@@ -115,8 +114,8 @@ function addToCart(event) {
     let data = {
       id: id,
       title: card.children[1]?.children[0]?.children[0]?.innerText,
-      price: parseInt(card?.children[1]?.children[2]?.children[0]?.innerText),
-      img: card?.children[0].src,
+      price: parseInt(card?.children[1]?.children[3]?.children[0]?.innerText),
+      img: card?.children[0].children[0].src,
       link: card?.children[1]?.children[0].href,
     };
     console.log(card?.children[1]?.children[2]);

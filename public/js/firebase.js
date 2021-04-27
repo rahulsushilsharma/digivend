@@ -167,6 +167,8 @@ const searchInput = document.getElementById("search-input");
 
 function search() {
   let search_value = searchInput.value.trim();
+  search_value = search_value.toString();
+  search_value = search_value.toLocaleLowerCase()
   let newUrl  = window.location.protocol + "//" + window.location.host + "/search" + "?" + search_value;
   window.location.assign(newUrl)
 }
