@@ -9,7 +9,7 @@ function renderUIForCart() {
           </a>
         
         <p class="disc">${data.title}</p>
-        <p class="price">₹  ${data.price}</p>
+        <p class="discounted_price" style="margin-top:2rem;">₹  ${data.price}</p>
         <input class="quantity" oninput="updateQuantity(event)" type="number" name="quantity" value = ${data.quantity} id="quantity">
         <button class="remove" onclick="removeFromCart(event)">Remove</button>
         <span id= "cart_id">${data.id}<span>
