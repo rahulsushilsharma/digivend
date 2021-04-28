@@ -164,6 +164,7 @@ document.getElementById("form_signup").addEventListener(
 );
 
 const searchInput = document.getElementById("search-input");
+const searchInputMobile = document.getElementById("search-input-mobile");
 
 function search() {
   let search_value = searchInput.value.trim();
@@ -172,7 +173,17 @@ function search() {
   let newUrl  = window.location.protocol + "//" + window.location.host + "/search" + "?" + search_value;
   window.location.assign(newUrl)
 }
+function searchMobile() {
+  let search_value = searchInputMobile.value.trim();
+  search_value = search_value.toString();
+  search_value = search_value.toLocaleLowerCase()
+  let newUrl  = window.location.protocol + "//" + window.location.host + "/search" + "?" + search_value;
+  window.location.assign(newUrl)
+}
 
 searchInput.addEventListener("keyup", (ev) => {
   if (ev.key == "Enter") search();
+});
+searchInputMobile.addEventListener("keyup", (ev) => {
+  if (ev.key == "Enter") searchMobile();
 });

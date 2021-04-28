@@ -61,7 +61,6 @@ function renderComments(data) {
   main.appendChild(card);
 }
 
-
 function renderCommentInput() {
   let main = document.getElementById("comment");
   let card = document.createElement("div");
@@ -94,8 +93,6 @@ function renderCommentInput() {
   main.appendChild(card);
 }
 
-
-
 function callDbForMainPage() {
   db.collection("search")
     .where("title", "==", queryString)
@@ -107,8 +104,6 @@ function callDbForMainPage() {
         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
         firebaseData = doc.data();
         doc_id = doc.id;
-
-        
 
         if (firebaseData.comments) {
           let rating = 0;
@@ -122,7 +117,7 @@ function callDbForMainPage() {
           renderUI(firebaseData, rating);
           renderCommentInput();
         } else {
-          renderUI(firebaseData, '0');
+          renderUI(firebaseData, "0");
           renderCommentInput();
         }
       });
@@ -155,7 +150,7 @@ function submitCummnet() {
     warningNotification({
       message: "Please set your display name in user dashbord",
     });
-  } else if (alreadyCummented(firebase.auth().currentUser.displayName)) {
+  } else if (alreadyCummented(firebase.auth().currentUser.email)) {
     warningNotification({
       message: "Already commented ",
     });
@@ -166,9 +161,11 @@ function submitCummnet() {
   } else {
     data = {
       name: firebase.auth().currentUser.displayName,
-      cumment:cum,
+      email: firebase.auth().currentUser.email,
+      cumment: cum,
       rating: parseInt(document.getElementById("rate").value),
     };
+    updateUserComments(cum, firebase.auth().currentUser.email,parseInt(document.getElementById("rate").value));
     comments.push(data);
     console.log(comments);
     renderComments(data);
@@ -189,7 +186,29 @@ function submitCummnet() {
 
 function alreadyCummented(user) {
   for (let i = 0; i < comments.length; i++) {
-    if (comments[i].name == user) return true;
+    if (comments[i].email == user) return true;
   }
   return false;
+}
+
+function updateUserComments(data, email__,rate) {
+  db.collection("users")
+    .where("email", "==", email__)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+        let comments = [];
+        comments.push({
+          comment: doc.data()?.comments,
+          rating: rate,
+        });
+        comments.push(data);
+        doc_id = doc.id;
+
+        db.collection("users").doc(doc_id).update({
+          comments: comments,
+        });
+      });
+    });
 }
