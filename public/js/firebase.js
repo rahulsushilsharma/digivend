@@ -27,7 +27,7 @@ const errorNotification = window.createNotification({
 });
 
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+
 var db = firebase.firestore();
 
 var provider = new firebase.auth.GoogleAuthProvider();

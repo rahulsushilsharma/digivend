@@ -165,7 +165,7 @@ function submitCummnet() {
       cumment: cum,
       rating: parseInt(document.getElementById("rate").value),
     };
-    updateUserComments(cum, firebase.auth().currentUser.email,parseInt(document.getElementById("rate").value));
+    // updateUserComments(cum, firebase.auth().currentUser.email,parseInt(document.getElementById("rate").value));
     comments.push(data);
     console.log(comments);
     renderComments(data);
@@ -191,24 +191,24 @@ function alreadyCummented(user) {
   return false;
 }
 
-function updateUserComments(data, email__,rate) {
-  db.collection("users")
-    .where("email", "==", email__)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-        let comments = [];
-        comments.push({
-          comment: doc.data()?.comments,
-          rating: rate,
-        });
-        comments.push(data);
-        doc_id = doc.id;
+// function updateUserComments(data, email__,rate) {
+//   db.collection("users")
+//     .where("email", "==", email__)
+//     .get()
+//     .then((querySnapshot) => {
+//       querySnapshot.forEach((doc) => {
+//         console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+//         let comments = [];
+//         comments.push({
+//           comment: doc.data()?.comments,
+//           rating: rate,
+//         });
+//         comments.push(data);
+//         doc_id = doc.id;
 
-        db.collection("users").doc(doc_id).update({
-          comments: comments,
-        });
-      });
-    });
-}
+//         db.collection("users").doc(doc_id).update({
+//           comments: comments,
+//         });
+//       });
+//     });
+// }

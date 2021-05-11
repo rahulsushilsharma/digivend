@@ -100,7 +100,7 @@ function callDbForProductType() {
             rating = rating + data.rating;
           });
           rating = rating / firebaseData.comments.length;
-          console.log(firebaseData, firebaseData.id, rating);
+          // console.log(firebaseData, firebaseData.id, rating);
 
           renderUI(firebaseData, firebaseData.id, rating);
         } else {

@@ -221,6 +221,73 @@
 
 
     <!-- main content of page -->
+    <div class="sidebar">
+        <form id="price-filter-form" class="price-filter">
+            <p class="filter-type">Price:</p>
+            <div>
+                <input type="radio" id="500" name="price" value="500">
+                <label for="500">less than 500</label><br>
+            </div>
+            <div>
+                <input type="radio" id="1000" name="price" value="1000">
+                <label for="1000">less than 1000</label><br>
+            </div>
+            <div>
+                <input type="radio" id="5000" name="price" value="5000">
+                <label for="5000">less than 5000</label><br>
+            </div>
+            <div>
+                <input type="radio" id="10000" name="price" value="10000">
+                <label for="10000">less than 10000</label><br>
+            </div>
+            <div>
+                <input type="radio" id="10001" name="price" value="10001">
+                <label for="10001">10000 or above</label><br>
+            </div>
+        </form>
+        <form id="discount-filter-form" class="price-filter">
+            <p class="filter-type">discount:</p>
+
+            <div>
+                <input type="radio" id="10" name="price" value="10">
+                <label for="10">grater than 10%</label><br>
+            </div>
+            <div>
+                <input type="radio" id="20" name="price" value="20">
+                <label for="20">grater than 20%</label><br>
+            </div>
+            <div>
+                <input type="radio" id="30" name="price" value="30">
+                <label for="30">grater than 30%</label><br>
+            </div>
+            <div>
+                <input type="radio" id="50" name="price" value="50">
+                <label for="50">grater than 50%</label><br>
+            </div>
+
+        </form>
+        <button class="filter-button" onclick="filter()">Filter</button>
+        <button class="filter-button" style="right: 10rem; background-color: var(--tag-primary); padding: 0.5rem;" onclick="removeFilter()">Remove</button>
+
+    </div>
+    <button class="filter-button" id="show-filter" onclick="showFilter()">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" viewBox="0 0 477.875 477.875" style="enable-background:new 0 0 477.875 477.875;"
+            xml:space="preserve">
+            <g>
+                <g>
+                    <path d="M460.804,0H17.071C7.645,0,0.004,7.641,0.004,17.067V102.4c0.001,4.836,2.054,9.445,5.649,12.681l165.018,148.514V460.8
+                c-0.004,9.426,7.633,17.07,17.059,17.075c2.651,0.001,5.266-0.615,7.637-1.8l102.4-51.2c5.786-2.891,9.441-8.806,9.438-15.275
+                V263.595l165.018-148.48c3.604-3.243,5.658-7.866,5.649-12.715V17.067C477.871,7.641,470.23,0,460.804,0z M443.737,94.805
+                L278.72,243.285c-3.604,3.243-5.657,7.866-5.649,12.715v143.053l-68.267,34.133V256c-0.001-4.836-2.054-9.445-5.649-12.68
+                L34.137,94.805V34.133h409.6V94.805z" />
+                </g>
+            </g>
+
+        </svg>
+
+    </button>
+
     <div class="spinner_box" id="loading_spinner">
         <svg class="loading_spinner" width="57" height="57" viewBox="0 0 57 57" xmlns="http://www.w3.org/2000/svg"
             stroke="#fff">
@@ -254,8 +321,11 @@
         <h2 style="text-align: center;margin: 30vh 0 0;">Sorry, No results found </h2>
         <p style="text-align: center;">Try something else </p>
     </div>
-    <div id="product-type-main" class="main-content">
+    <div class="main-container">
 
+        <div id="product-type-main" class="main-content">
+
+        </div>
     </div>
 
     <footer>
@@ -300,31 +370,10 @@
             <p>A online shoping platform</p>
         </div>
         <div class="social">
-           
+
         </div>
 
     </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     <script src="../js/notifications.js"></script>

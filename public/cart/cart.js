@@ -10,7 +10,7 @@ function renderUIForCart() {
         
         <p class="disc">${data.title}</p>
         <p class="discounted_price" style="margin-top:2rem;">₹  ${data.price}</p>
-        <input class="quantity" oninput="updateQuantity(event)" type="number" name="quantity" value = ${data.quantity} id="quantity">
+        <input class="quantity"  min="1" max="9999" oninput="updateQuantity(event)" type="number" name="quantity" value = ${data.quantity} id="quantity">
         <button class="remove" onclick="removeFromCart(event)">Remove</button>
         <span id= "cart_id">${data.id}<span>
     </div>  
@@ -42,10 +42,39 @@ function calculatetotal() {
 }
 function updateQuantity(event) {
   let id = event.path[1].children[5].innerText;
-  cartLS.update(parseInt(id), "quantity", parseInt(event.target.value));
+  if (parseInt(event.target.value) >= 1) {
+    cartLS.update(parseInt(id), "quantity", parseInt(event.target.value));
+  } else {
+    errorNotification({
+      message: "Already minimum quantity in cart",
+    });
+  }
   // console.log(parseInt(id), parseInt(event.target.value));
   calculatetotal();
 }
 
 renderUIForCart();
 calculatetotal();
+
+function syncCart() {
+  let cart_data_for_sync = [];
+  let doc_id;
+  db.collection("users")
+    .where("email", "==", firebase.auth().currentUser.email)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+        if (doc.data()?.cart_data)
+          cart_data_for_sync.push(doc.data()?.cart_data);
+        doc_id = doc.id;
+      });
+
+      cartLS.list().forEach((data) => {
+        cart_data_for_sync.push(data);
+      });
+      db.collection("users").doc(doc_id).update({
+        cart_data: cart_data_for_sync,
+      });
+    });
+}

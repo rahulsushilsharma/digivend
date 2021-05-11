@@ -1,8 +1,7 @@
 var queryString = decodeURIComponent(window.location.search);
 queryString = queryString.substring(1);
 
-console.log(queryString);
-
+// console.log(queryString);
 
 let title = document.querySelector("title");
 title.innerText = `Digivend | ${queryString}`;
@@ -10,8 +9,11 @@ title.innerText = `Digivend | ${queryString}`;
 function renderUI(data, id, rating) {
   let main = document.getElementById("product-type-main");
   let card = document.createElement("div");
-  let discounted_price = Math.round(data.price - (data.price * data.discount) / 100);
-  rating = Math.round(rating * 10) / 10
+  let discounted_price = Math.round(
+    parseInt(data.price) -
+      (parseInt(data.price) * parseInt(data.discount)) / 100
+  );
+  rating = Math.round(rating * 10) / 10;
   card.classList.add("card");
 
   card.innerHTML = `
@@ -71,6 +73,42 @@ function renderUI(data, id, rating) {
 
 let firebaseData;
 
+let for_filter = [];
+// function callDbWithFilters(fliter) {
+//   db.collection("search")
+//     .where("tags", "array-contains", queryString)
+//     .get()
+//     .then((querySnapshot) => {
+//       document.getElementById("loading_spinner").style.display = "none";
+//       document.getElementById("no_results").style.display = "none";
+
+//       if (querySnapshot.empty) {
+//         console.log("no documents found");
+//         document.getElementById("no_results").style.display = "block";
+
+//       } else {
+//         querySnapshot.forEach((doc) => {
+//           firebaseData = doc.data();
+//         doc_id = doc.id;
+//         console.log(firebaseData);
+
+//         if (firebaseData.comments) {
+//           let rating = 0;
+//           firebaseData.comments.forEach((data) => {
+//             rating = rating + data.rating;
+//           });
+//           rating = rating / firebaseData.comments.length;
+//           console.log(firebaseData, firebaseData.id, rating);
+
+//           renderUI(firebaseData, firebaseData.id, rating);
+//         } else {
+//           renderUI(firebaseData, firebaseData.id, "0");
+//         }
+//         });
+//       }
+//     });
+// }
+// callDbWithFilters();
 function callDbForProductType() {
   db.collection("search")
     .where("tags", "array-contains", queryString)
@@ -80,33 +118,32 @@ function callDbForProductType() {
       document.getElementById("no_results").style.display = "none";
 
       if (querySnapshot.empty) {
-        console.log("no documents found");
+        // console.log("no documents found");
         document.getElementById("no_results").style.display = "block";
-        
       } else {
         querySnapshot.forEach((doc) => {
           firebaseData = doc.data();
-        doc_id = doc.id;
-        console.log(firebaseData);
+          for_filter.push(doc.data());
+          doc_id = doc.id;
+          // console.log(firebaseData);
 
-        if (firebaseData.comments) {
-          let rating = 0;
-          firebaseData.comments.forEach((data) => {
-            rating = rating + data.rating;
-          });
-          rating = rating / firebaseData.comments.length;
-          console.log(firebaseData, firebaseData.id, rating);
+          if (firebaseData.comments) {
+            let rating = 0;
+            firebaseData.comments.forEach((data) => {
+              rating = rating + data.rating;
+            });
+            rating = rating / firebaseData.comments.length;
+            // console.log(firebaseData, firebaseData.id, rating);
 
-          renderUI(firebaseData, firebaseData.id, rating);
-        } else {
-          renderUI(firebaseData, firebaseData.id, "0");
-        }
+            renderUI(firebaseData, firebaseData.id, rating);
+          } else {
+            renderUI(firebaseData, firebaseData.id, "0");
+          }
         });
       }
     });
 }
 callDbForProductType();
-
 function addToCart(event) {
   let card = event.target.closest(".card");
   let id = parseInt(card.children[2].innerText);
@@ -118,7 +155,7 @@ function addToCart(event) {
       img: card?.children[0].children[0].src,
       link: card?.children[1]?.children[0].href,
     };
-    console.log(card?.children[1]?.children[2]);
+    // console.log(card?.children[1]?.children[2]);
     successNotification({
       message: "Sucessfully added to the cart ",
     });
@@ -134,3 +171,117 @@ function addToCart(event) {
 //     .where("tags", "array-contains", "baby")
 
 //     console.log(test);
+
+function filter() {
+  document.getElementById("loading_spinner").style.display = "block";
+  document.getElementById("no_results").style.display = "none";
+
+  let price_form = document.querySelector("#price-filter-form");
+  let discount_form = document.querySelector("#discount-filter-form");
+  let price, discount;
+  for (const i of price_form.elements) {
+    if (i.checked) price = parseInt(i.value);
+  }
+  for (const i of discount_form.elements) {
+    if (i.checked) discount = parseInt(i.value);
+  }
+
+  let temp = [];
+  if (price && !discount) {
+    for (const ele of for_filter) {
+      let prod_price =
+        parseInt(ele.price) -
+        (parseInt(ele.price) * parseInt(ele.discount)) / 100;
+      if (price != 10001) {
+        if (prod_price < price) temp.push(ele);
+      } else {
+        if (prod_price > price) temp.push(ele);
+      }
+    }
+  }
+  if (discount && !price) {
+    for (const ele of for_filter) {
+      if (parseInt(ele.discount) > discount) temp.push(ele);
+    }
+  }
+
+  if (price && discount) {
+    for (const ele of for_filter) {
+      let prod_price =
+        parseInt(ele.price) -
+        (parseInt(ele.price) * parseInt(ele.discount)) / 100;
+
+      if (price != 10001) {
+        if (prod_price < price && parseInt(ele.discount) > discount)
+          temp.push(ele);
+      } else {
+        if (prod_price > price && parseInt(ele.discount) > discount)
+          temp.push(ele);
+      }
+    }
+  }
+  document.getElementById("product-type-main").innerHTML = "";
+
+  if (!temp.length) {
+    document.getElementById("no_results").style.display = "block";
+  } else {
+    temp.forEach((doc) => {
+      firebaseData = doc;
+      doc_id = doc.id;
+      // console.log(firebaseData);
+
+      if (firebaseData.comments) {
+        let rating = 0;
+        firebaseData.comments.forEach((data) => {
+          rating = rating + data.rating;
+        });
+        rating = rating / firebaseData.comments.length;
+        // console.log(firebaseData, firebaseData.id, rating);
+
+        renderUI(firebaseData, firebaseData.id, rating);
+      } else {
+        renderUI(firebaseData, firebaseData.id, "0");
+      }
+    });
+  }
+  document.getElementById("loading_spinner").style.display = "none";
+}
+
+function removeFilter() {
+  document.getElementById("product-type-main").innerHTML = "";
+  let price_form = document.querySelector("#price-filter-form");
+  let discount_form = document.querySelector("#discount-filter-form");
+
+  for (const i of price_form.elements) {
+    i.checked = false;
+  }
+  for (const i of discount_form.elements) {
+    i.checked = false;
+  }
+  for_filter.forEach((doc) => {
+    firebaseData = doc;
+    doc_id = doc.id;
+    if (firebaseData.comments) {
+      let rating = 0;
+      firebaseData.comments.forEach((data) => {
+        rating = rating + data.rating;
+      });
+      rating = rating / firebaseData.comments.length;
+      // console.log(firebaseData, firebaseData.id, rating);
+
+      renderUI(firebaseData, firebaseData.id, rating);
+    } else {
+      renderUI(firebaseData, firebaseData.id, "0");
+    }
+  });
+}
+
+function showFilter() {
+  if (document.querySelector(".sidebar").style.display == "block") {
+    document.querySelector(".sidebar").style.display = "none";
+    // document.querySelector("#show-filter").innerText = 'Hide Filter';
+  } else {
+    document.querySelector(".sidebar").style.display = "block";
+    // document.querySelector("#show-filter").innerText = 'Show Filter';
+  }
+}

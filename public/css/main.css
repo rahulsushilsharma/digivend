@@ -571,7 +571,6 @@ footer {
   max-height: 90%;
 }
 
-
 .cart_div {
   position: absolute;
   top: 1.5rem;
@@ -628,4 +627,10 @@ footer {
 .fa {
   margin-top: 4px;
   margin-left: 2px;
+}
+
+.carousel-cell img {
+  display: block;
+  max-height: 100%;
+  width: 100%;
 }
